@@ -38,5 +38,18 @@ def eratosphene(n):
     return arr
 print(eratosphene(100))
 
-        
+# решение чуть быстрее
+
+def eratosphen(n)
+    arr = [True] * n
+    arr[0] = arr[1] = False
+    for i in range(2, len(arr)):
+        if arr[i]:
+            for j in range(i*i, len(arr), i):
+                arr[j] = False
+    return [i for i, status in enumerate(arr) if status]
+print(eratosphen(100))
+
+             
+
 
