@@ -11,23 +11,23 @@ def shifr(ch: str, n: int) -> str:
   res = ''
   for i in range(len(ch)):
     if ch[i] in alf2:
-      res += alf2[(alf2.index(ch[i]) + n) % 32]
+      res += alf2[(alf2.index(ch[i]) + n) % 33]
     elif ch[i] in alf1:
-      res += alf1[(alf1.index(ch[i]) + n) % 25]
+      res += alf1[(alf1.index(ch[i]) + n) % 26]
   return res
 
 def de_shifr(ch: str, n: int) -> str:
     res = ''
     for i in range(len(ch)):
       if ch[i] in alf2:
-        res += alf2[(alf2.index(ch[i]) - n) % 32]
+        res += alf2[(alf2.index(ch[i]) - n) % 33]
       elif ch[i] in alf1:
-        res += alf1[(alf1.index(ch[i]) - n) % 25]
+        res += alf1[(alf1.index(ch[i]) - n) % 26]
     return res
 
 ch =  input('введите слово: ').lower()
 n = int(input('на какое количество знаков сдвиг: '))
-if not n or n > 36:
+if n <= 0 or n > 36:
   print("некоректный ввод")
   exit()
 
@@ -82,7 +82,7 @@ def parol(add_digits, add_lower_registr, add_special_symbols, add_upper_registr,
   if curr_parol == []:
     return 'пароля не будет'
   a = random.shuffle(curr_parol)
-  res_parol = "".join(curr_parol[: len_parol - 1])
+  res_parol = "".join(curr_parol[:len_parol])
   return res_parol
 print(parol(add_digits, add_lower_registr, add_special_symbols,add_upper_registr, len_parol))
 
@@ -91,15 +91,15 @@ print(parol(add_digits, add_lower_registr, add_special_symbols,add_upper_registr
 def convertation(n: int) -> str:
   sl = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50: "L", 40: 'XL', 10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'}
   res = []
-  for val, key in sl.items():
-    while n >= val:
-      res.append(key)
-      n -= val
+  for num, roman in sl.items():
+    while n >= num:
+      res.append(roman)
+      n -= num
   return "".join(res)
 
 
 
-def anti_conversation(ch: str) -> int:
+def anti_convertation(ch: str) -> int:
   sl = {'M': 1000,'D': 500, 'C': 100, "L": 50, 'X': 10, 'V': 5, 'I': 1}
   res = 0
   for i in range(len(ch) - 1):
@@ -110,6 +110,41 @@ def anti_conversation(ch: str) -> int:
   res += sl[ch[-1]]
   return res
 
+
+# виселица
+words = ["компьютер", "компуктер", "дрындулет", "терминатор"]
+
+def hangman():
+    word = random.choice(words)
+    guessed = ["_"] * len(word) 
+    att = 10                 
+    used_letters = set()
+
+    print("слово:", " ".join(guessed))
+
+    while att > 0 and "_" in guessed:
+        letter = input("введи букву: ")
+        if letter in used_letters:
+            print("буква уже была")
+            continue
+        used_letters.add(letter)
+        if letter in word:
+            for i in range(len(word)):
+                if word[i] == letter:
+                    guessed[i] = letter
+            print("есть попадание")
+        else:
+            attempts -= 1
+            print(f"мимо. осталось попыток: {attempts}")
+
+        print("слово:", " ".join(guessed))
+
+    if "_" not in guessed:
+        print("ты выйграл")
+    else:
+        print(f"проиграл, слово было: {word}")
+
+print(hangman())
 
 
 
