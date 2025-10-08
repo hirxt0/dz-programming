@@ -6,7 +6,7 @@ import random
 from typing import List
 
 a = random.randint(0, 100)
-for i in range(1, 4):
+for i in range(3):
     try:
         n = int(input("введите число:  "))
         if n < a:
@@ -16,7 +16,7 @@ for i in range(1, 4):
         else:
             print("вы угадали число")
             exit()
-        if i == 2:
+        if i == 1:
             if n%2:
                 print('число нечетное')
             else:
@@ -24,22 +24,22 @@ for i in range(1, 4):
 
     except:
         print("вы ввели не число")
-print("вы не угадали число")
+print("\nвы не угадали число")
     
 # упражнение 2
 vowels = 'aeyuio'
-not_vowels = 'zaqxswcdevfrbgtnhymjukilop' - vowels
-us_word = input('введите имя').lower()
+not_vowels = set('zaqxswcdevfrbgtnhymjukilop') - set(vowels)
+us_word = input('введите предложение: ').lower()
 
 def f(s: str) -> List[str]:
-    s_vowels = len([x for x in s if x in vowels])
-    s_not_vowels = len([x for x in s if x in not_vowels])
+    s_vowels = sum(1 for x in s if x in vowels)
+    s_not_vowels = sum(1 for x in s if x in not_vowels)
     space = s.count(' ')
     words = len(s.split(' '))
     sl = {x: 0 for x in set(s)}
     for i in s:
         sl[i] += 1
-    sorted_letters = sorted([(key, item) for key, item in sl], key = lambda x: x[1])[:3]
+    sorted_letters = sorted(sl.items(), key = lambda x: x[1], reverse=True)[:3]
     return s_vowels, s_not_vowels, space, words, sorted_letters
 
 s_vowels, s_not_vowels, space, words, sorted_letters = f(us_word)
@@ -56,15 +56,15 @@ tools = ['камень', 'ножницы', 'бумага']
 moves = {'камень': 'ножницы', 'ножницы': 'бумага', 'бумага': 'камень'}
 
 def game() -> str:
-    score = (0, 0)
+    score = [0, 0]
     for _ in range(1, 4):
-        user_move = input('ваш ход: [камень\ножницы\бумага]: ')
-        comp_move = tools[random.randint(0, 3)]
+        user_move = input('ваш ход: [камень\ножницы\бумага]: \n')
+        comp_move = random.choice(tools)
 
         if moves[user_move] == comp_move:
-            score[1] += 1
-        else:
             score[0] += 1
+        else:
+            score[1] += 1
 
         if score[0] == 2:
             return 'ты победил'
@@ -73,7 +73,6 @@ def game() -> str:
         
         print(score)
 
-print(game)
+print(game())
 
 # упражнение 4
-
