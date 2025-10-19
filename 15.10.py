@@ -9,7 +9,7 @@ goods = {
         {'amount': Decimal('2.0'), 'expiration_date': date(2023, 8, 1)},
     ],
     'Вода': [
-        {'amount': ('1.5 л'), 'expiration_date': None}
+        {'amount': Decimal('1.5'), 'expiration_date': None}
     ],
 }
 
@@ -17,13 +17,18 @@ def is_valid_date(date, date_format):
     try: 
         datetime.strptime(date, date_format)
         return True
-    except:
+    except ValueError:
         return False
 
 
 
 def add(good: str):
     parts = [x.strip() for x in good.split(",")]
+
+    if len(parts) < 2:
+        print("неправильный ввод")
+        return 
+    
     name = parts[0]
     amount = Decimal(parts[1].strip().split(' ')[0])
     date = parts[2] if len(parts[2]) > 2 else None
@@ -35,7 +40,7 @@ def add(good: str):
     if name in goods:
         goods[name].append({'amount': amount, 'expiration_date': expiration})
     else:
-        goods[name] = ({'amount': amount, 'expiration_date': expiration})
+        goods[name] = [{'amount': amount, 'expiration_date': expiration}]
 
 
 def find(path: str):
