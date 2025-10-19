@@ -31,7 +31,7 @@ vowels = 'aeyuio'
 not_vowels = set('zaqxswcdevfrbgtnhymjukilop') - set(vowels)
 us_word = input('введите предложение: ').lower()
 
-def f(s: str) -> List[str]:
+def f(s: str):
     s_vowels = sum(1 for x in s if x in vowels)
     s_not_vowels = sum(1 for x in s if x in not_vowels)
     space = s.count(' ')
