@@ -40,7 +40,7 @@ print(eratosphene(100))
 
 # решение чуть быстрее
 
-def eratosphen(n)
+def eratosphen(n):
     arr = [True] * n
     arr[0] = arr[1] = False
     for i in range(2, len(arr)):
