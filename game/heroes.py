@@ -111,11 +111,11 @@ class Ment(Hero):
             other.health -= total
             self.cartridges -= 1
             if weapon_damage[0]:
-                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, "\
-                       f"нанося {total} критического урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, \
+                    нанося {total} критического урона. У {other.name} осталось {max(0, other.health)} HP.\n"
             else:
-                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, "\
-                       f"нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, \
+                    нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
         else:
             return f"У {self.name} закончились патроны"
 

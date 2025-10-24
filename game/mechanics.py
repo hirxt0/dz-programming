@@ -3,6 +3,7 @@ import tools as tl
 
 from random import randint
 import sys
+import time
         
 
 class Casino:
@@ -70,6 +71,7 @@ class Fight:
         print(f"\nБой между {hero1.name} и {hero2.name} начинается!\n")
 
         while hero1.health > 0 and hero2.health > 0:
+            time.sleep(0.7)
             if hasattr(hero1, "show_abilities"):
                 print(hero1.show_abilities())
             move = input("Выберите действие: ")
