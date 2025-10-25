@@ -65,9 +65,7 @@ class Casino:
             return "Ошибка ввода! Поробуйте еще раз"
 
 
-class Fight:
-
-    def duel(hero1: hr.Hero, hero2: hr.Hero):
+def duel(hero1: hr.Hero, hero2: hr.Hero):
         print(f"\nБой между {hero1.name} и {hero2.name} начинается!\n")
 
         while hero1.health > 0 and hero2.health > 0:

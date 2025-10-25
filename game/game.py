@@ -64,7 +64,7 @@ def main():
         move3 = input("") == "Пошел нахуй" or "Отвали"
         time.sleep(1)
         if move3:
-            mc.Fight.duel(main_hero, police)
+            mc.duel(main_hero, police)
             if main_hero.health <= 0:
                 print("Вы проиграли. Конец игры\n")
                 sys.exit()
@@ -96,7 +96,7 @@ def main():
         dragon = hr.Dragon("Владислав Борисович", 200, 25, tl.Weapon("Удар крылом", 20, 8), 0)
         time.sleep(0.5)
         print("Вы встретили громадного огнедышащего дракона Владислава Борисовича!\n")
-        mc.Fight.duel(main_hero, dragon)
+        mc.duel(main_hero, dragon)
         if main_hero.health <= 0:
             print("Вы сгорели в огне дракона. Конец игры.")
             sys.exit()
