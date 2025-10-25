@@ -26,8 +26,7 @@ class Hero:
         if weapon_damage[0]:
             return f"{self.name} атакует {other.name} с помощью {self.weapon.name}, нанося {total} критического урона. У {other.name} осталось {max(0, other.health)} HP.\n"
 
-        return f"{self.name} атакует {other.name} с помощью {self.weapon.name}, \
-              нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+        return f"{self.name} атакует {other.name} с помощью {self.weapon.name}, нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
         
 
 class Cucumber(Hero):
@@ -39,8 +38,7 @@ class Cucumber(Hero):
     def spike_attack(self, other: Hero):
         spike_damage = randint(30, 60)
         other.health -= spike_damage
-        return f"{self.name} выстрелили своим шипом в {other.name}, \
-              нанося {spike_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+        return f"{self.name} выстрелили своим шипом в {other.name}, нанося {spike_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
     
     def heal(self):
         heal_amount = randint(10, 30)
@@ -111,11 +109,9 @@ class Ment(Hero):
             other.health -= total
             self.cartridges -= 1
             if weapon_damage[0]:
-                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, \
-                    нанося {total} критического урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, нанося {total} критического урона. У {other.name} осталось {max(0, other.health)} HP.\n"
             else:
-                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, \
-                    нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+                return f"{self.name} выстрелили в {other.name} с помощью {self.weapon.name}, нанося {total} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
         else:
             return f"У {self.name} закончились патроны"
 
@@ -136,8 +132,7 @@ class Dragon(Hero):
     def breathe_fire(self, other: Hero):
         fire_damage = randint(20, 40)
         other.health -= fire_damage
-        return f"{self.name} дышит огнем на {other.name},\
-             нанося {fire_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+        return f"{self.name} дышит огнем на {other.name}, нанося {fire_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
 
     def dragon_heal(self):
         heal_amount = randint(10, 30)

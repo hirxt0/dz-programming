@@ -17,7 +17,7 @@ def main():
         main_hero = hr.Warrior("Антон", 100, 10, tl.Weapon('Деревянная палка', 15, 4), 0)
         print(f"Вы сделали прекрасный выбор, ваш персонаж  - незнающий побед рыцарь {main_hero.info}")
     elif main_character == '2':
-        main_hero = hr.Cucumber("Огурец", 70, 5, tl.Weapon('Нож', 20, 4), 1000)
+        main_hero = hr.Cucumber("Огурец", 90, 5, tl.Weapon('Нож', 20, 4), 1000)
         print(f"Вы сделали ошеломительный выбор, ваш персонаж - {main_hero.info}")
     else:
         print("Ошибка ввода")
