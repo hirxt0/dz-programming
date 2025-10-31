@@ -30,8 +30,8 @@ class Weapon:
         dmg = self.base_damage
         if randint(1, 10) <= self.crit_chance:
             crit_dmg = dmg * 2
-            return [0, crit_dmg]
-        return [1, dmg]
+            return [1, crit_dmg]
+        return [0, dmg]
     
     def __str__(self):
         return f"Оружие: {self.name} Базовый урон: {self.base_damage}, Крит. шанс: {self.crit_chance * 10}% "

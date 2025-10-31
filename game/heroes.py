@@ -15,7 +15,7 @@ class Hero:
 
     @property
     def info(self) -> str:
-        return (f"{self.name}: Здоровье = {self.health}\n Сила = {self.power}\n "
+        return (f"{self.name}: \nЗдоровье = {self.health}\n Сила = {self.power}\n "
                 f"Оружие = {self.weapon.name}\n Баланс = {self.balance}")
 
     def attack(self, other: Hero) -> str:
@@ -118,8 +118,7 @@ class Ment(Hero):
     def pepper_spray(self, other: Hero):
         pepper_spray_damage = randint(10, 30)
         other.health -= pepper_spray_damage
-        return f"{self.name} использовал перцовый баллончик против {other.name}, нанося \
-            {pepper_spray_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
+        return f"{self.name} использовал перцовый баллончик против {other.name}, нанося {pepper_spray_damage} урона. У {other.name} осталось {max(0, other.health)} HP.\n"
 
     def sneez(self):
         return "Полицейский чихнул"

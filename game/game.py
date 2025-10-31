@@ -17,7 +17,7 @@ def main():
         main_hero = hr.Warrior("Антон", 100, 10, tl.Weapon('Деревянная палка', 15, 4), 0)
         print(f"Вы сделали прекрасный выбор, ваш персонаж  - незнающий побед рыцарь {main_hero.info}")
     elif main_character == '2':
-        main_hero = hr.Cucumber("Огурец", 90, 5, tl.Weapon('Нож', 20, 4), 1000)
+        main_hero = hr.Cucumber("Огурец", 90, 5, tl.Weapon('Нож', 18, 4), 1000)
         print(f"Вы сделали ошеломительный выбор, ваш персонаж - {main_hero.info}")
     else:
         print("Ошибка ввода")
@@ -38,7 +38,7 @@ def main():
     time.sleep(2)
     print("Вы оглядываетесь по сторонам и тут словно ниоткуда появляется полицейский\n")
     
-    police = hr.Ment("Юрий Борисович", 100, 12, tl.Weapon('Пистолет', 20, 5), 5000)
+    police = hr.Ment("Юрий Борисович", 100, 12, tl.Weapon('Пистолет', 18, 5), 5000)
     [police.inventory.add_item(x) for x in ['cocain', 'удостоверение', tl.Weapon('Пистолет', 20, 4)]]
 
     if move1:
@@ -47,7 +47,7 @@ def main():
                " И почему вы находитесь в таком состоянии?")
         time.sleep(1)
         print("- Отвали\n")
-        mc.Fight.duel(main_hero, police)
+        mc.duel(main_hero, police)
         if main_hero.health <= 0:
             print("Вы проиграли. Конец игры")
             sys.exit()

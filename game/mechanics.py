@@ -49,7 +49,7 @@ class Casino:
                 print("Вы выжили! Ваш баланс увеличен на 1000 тенге")
                 self.hero.balance += 1000
             else:
-                print("ХААХХАХАХАХ А на че ты расчитывал? Ты умер! Конец игры")
+                print("ХААХХАХАХАХ А на что ты расчитывал? Ты умер! Конец игры")
                 sys.exit()
             
         elif game_type == "3":
@@ -66,50 +66,63 @@ class Casino:
 
 
 def duel(hero1: hr.Hero, hero2: hr.Hero):
-        print(f"\nБой между {hero1.name} и {hero2.name} начинается!\n")
+    
+    print(f"\nБой между {hero1.name} и {hero2.name} начинается!\n")
 
-        while hero1.health > 0 and hero2.health > 0:
-            time.sleep(0.7)
-            if hasattr(hero1, "show_abilities"):
-                print(hero1.show_abilities())
-            move = input("Выберите действие: ")
-            try:
-                if move == "1":
-                    print(hero1.attack(hero2))
-                elif move == "2" and hasattr(hero1, "spike_attack"):
-                    print(hero1.spike_attack(hero2))
-                elif move == "2" and hasattr(hero1, "change_weapon"):
-                    print(hero1.change_weapon())
-                    print(hero1.attack(hero2))
-                elif move == "3" and hasattr(hero1, "heal"):
-                    print(hero1.heal())
-                else:
-                    print("Неверный ввод, вы пропускаете ход.")
+    actions = {
+        "1": lambda: hero1.attack(hero2),
+        "2": (
+            lambda: hero1.spike_attack(hero2)
+            if hasattr(hero1, "spike_attack")
+            else (lambda: (hero1.change_weapon(), hero1.attack(hero2)))()
+        ),
+        "3": lambda: hero1.heal() if hasattr(hero1, "heal") else "Неверный ввод, вы пропускаете ход."
+    }
 
-            except:
-                print(f"Неправильный ввод. Ход пропущен.")
+    enemy_actions = {
+        1: lambda: hero2.attack(hero1) if hasattr(hero2, "attack") else None,
+        2: lambda: (
+            hero2.pepper_spray(hero1)
+            if hasattr(hero2, "pepper_spray")
+            else hero2.breathe_fire(hero1)
+            if hasattr(hero2, "breathe_fire")
+            else hero2.change_weapon()
+            if hasattr(hero2, "change_weapon")
+            else None
+        ),
+        3: lambda: (
+            hero2.sneez()
+            if hasattr(hero2, "sneez")
+            else hero2.dragon_heal()
+            if hasattr(hero2, "dragon_heal")
+            else None
+        ),
+    }
 
-            if hero2.health <= 0:
-                print(f"{hero2.name} пал! Победил {hero1.name}.")
-                break
+    while hero1.health > 0 and hero2.health > 0:
+        time.sleep(0.7)
+        if hasattr(hero1, "show_abilities"):
+            print(hero1.show_abilities())
 
-            move2 = randint(1, 3)
-            print(f"\nХод {hero2.name}: {move2}")
-            if move2 == 1:
-                if hasattr(hero2, "attack"):
-                    print(hero2.attack(hero1))
-            elif move2 == 2:
-                if hasattr(hero2, "pepper_spray"):
-                    print(hero2.pepper_spray(hero1))
-                elif hasattr(hero2, "breathe_fire") and randint(0, 1):
-                    print(hero2.breathe_fire(hero1))
-                elif hasattr(hero2, "change_weapon"):
-                    print(hero2.change_weapon())
-            elif move2 == 3:
-                if hasattr(hero2, "sneez"):
-                    print(hero2.sneez())
-                elif hasattr(hero2, "dragon_heal"):
-                    print(hero2.dragon_heal())
-            if hero1.health <= 0:
-                print(f"{hero1.name} пал! Победил {hero2.name}.")
-                break
+        move = input("Выберите действие: ")
+        try:
+            action = actions.get(move, lambda: "Неверный ввод, вы пропускаете ход.")
+            result = action()
+            if result:
+                print(result)
+        except Exception as e:
+            print(f"Ошибка: {e}. Ход пропущен.")
+
+        if hero2.health <= 0:
+            print(f"{hero2.name} пал! Победил {hero1.name}.")
+            break
+
+        move2 = randint(1, 3)
+        print(f"\nХод {hero2.name}: {move2}")
+        result = enemy_actions.get(move2, lambda: None)()
+        if result:
+            print(result)
+
+        if hero1.health <= 0:
+            print(f"{hero1.name} пал! Победил {hero2.name}.")
+            break
