@@ -124,6 +124,7 @@ class Ment(Hero):
     def sneez(self):
         return "Полицейский чихнул"
 
+
 class Dragon(Hero):
 
     def __init__(self, name, health, power, weapon, balance=0):
