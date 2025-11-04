@@ -57,8 +57,8 @@ def main():
             if move2:
                 time.sleep(0.8)
                 [main_hero.inventory.add_item(item) for item in police.inventory.items]
-                main_hero.balance += police.balance
-                print(f"Вы подобрали {police.balance} тенге, а также {[str(item) for item in police.inventory.items]}")
+                main_hero.add_balance(police._balance)
+                print(f"Вы подобрали {police._balance} тенге, а также {[str(item) for item in police.inventory.items]}")
     else:
         print("- Гражданин, что вы делаете здесь посреди ночи?\n")
         move3 = input("") == "Пошел нахуй" or "Отвали"
@@ -72,8 +72,8 @@ def main():
                 time.sleep(0.5)
                 move2 = input("Вы убили полицейского, вы можете подобрать его вещи - Да\Нет: ").lower() == 'да'
                 [main_hero.inventory.add_item(item) for item in police.inventory.items]
-                main_hero.balance += police.balance
-                print(f"Вы подобрали {police.balance} тенге, а также {[str(item) for item in police.inventory.items]}")
+                main_hero.add_balance(police._balance)
+                print(f"Вы подобрали {police._balance} тенге, а также {[str(item) for item in police.inventory.items]}")
         else:
             time.sleep(1)
             print("- Ладно, не задерживайтесь здесь\n")

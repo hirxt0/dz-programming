@@ -11,12 +11,15 @@ class Hero:
         self.health = health
         self.power = power
         self.weapon = weapon
-        self.balance = balance
+        self._balance = balance
+
+    def add_balance(self, amount: int):
+        self._balance += amount
 
     @property
     def info(self) -> str:
-        return (f"{self.name}: \nЗдоровье = {self.health}\n Сила = {self.power}\n "
-                f"Оружие = {self.weapon.name}\n Баланс = {self.balance}")
+        return (f"{self.name}: \n Здоровье = {self.health}\n Сила = {self.power}\n "
+                f"Оружие = {self.weapon.name}\n Баланс = {self._balance}")
 
     def attack(self, other: Hero) -> str:
         base_damage = self.power
