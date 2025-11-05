@@ -34,7 +34,7 @@ class Casino:
             
             if answer:
                 print("Вы выйграли в бархатный шелест! Ваш баланс увеличен на 1000 тенге епта и вам дается зачарование на меч!")
-                self.hero.balance += 1000
+                self.hero.add_balance(1000)
                 self.hero.weapon.damage += 5
                 self.hero.weapon.crit_chance += 1
 
@@ -47,7 +47,7 @@ class Casino:
             chamber = randint(1, 8)
             if chamber == 1:
                 print("Вы выжили! Ваш баланс увеличен на 1000 тенге")
-                self.hero.balance += 1000
+                self.hero.add_balance(1000)
             else:
                 print("ХААХХАХАХАХ А на что ты расчитывал? Ты умер! Конец игры")
                 sys.exit()
@@ -57,7 +57,7 @@ class Casino:
             chamber = randint(1, 8)
             if chamber == 1 or chamber == 2:
                 print("Вы выжили! Ваш баланс увеличен на 500 тенге")
-                self.hero.balance += 500
+                self.hero.add_balance(1000)
             else:
                 print("ХААХХАХАХАХ А на че ты расчитывал? Ты умер! Конец игры")
                 sys.exit()
