@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Star Wars Ships{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        h1 { color: #ffd700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .nav {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            background: #ffd700;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: #ffed4e; }
+        .messages {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .messages li {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .messages .success { background: #4caf50; }
+        .messages .error { background: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Star Wars Starships Database</h1>
+            <div class="nav">
+                <a href="{% url 'ship_list' %}" class="btn">Все корабли</a>
+                <a href="{% url 'fetch_ships' %}" class="btn">Загрузить данные</a>
+                <a href="{% url 'search_ships' %}" class="btn">Поиск</a>
+            </div>
+        </header>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
